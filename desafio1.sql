@@ -36,7 +36,7 @@ CREATE TABLE musicas (
   duracao_segundos INT NOT NULL,
   album_id INT NOT NULL,
   FOREIGN KEY (album_id) REFERENCES albuns(album_id)
-) ENGINE+InnoDB;
+) ENGINE=InnoDB;
 
 CREATE TABLE historico_reproducao (
   usuario_id INT NOT NULL,
@@ -134,7 +134,7 @@ INSERT INTO musicas (nome_musica, duracao_segundos, album_id)
   ("He's Walking Away", 159, 9),
   ("He's Trouble", 138, 9),
   ('I Heard I Want To Bo Alone', 120, 9),
-  (' Ride Alone', 151, 9),
+  ('I Ride Alone', 151, 9),
   ('Honey', 79, 10),
   ('You Cheated On Me', 95, 10),
   ("Wouldn't It Be Nice", 213, 10),
