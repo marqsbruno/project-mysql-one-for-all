@@ -38,23 +38,22 @@ CREATE TABLE musicas (
   FOREIGN KEY (album_id) REFERENCES albuns(album_id)
 ) ENGINE=InnoDB;
 
+CREATE TABLE seguindo_artistas (
+  usuario_id INT NOT NULL,
+  artista_id INT NOT NULL,
+  PRIMARY KEY (artista_id, usuario_id),
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
+  FOREIGN KEY (artista_id) REFERENCES artistas(artista_id)
+) ENGINE=InnoDB;
+
 CREATE TABLE historico_reproducao (
   usuario_id INT NOT NULL,
   musica_id INT NOT NULL,
   data_reproducao DATETIME NOT NULL,
   PRIMARY KEY (usuario_id, musica_id),
-  FOREIGN KEY (usuario_id) REFERENCES usuario_id(usuarios),
-  FOREIGN KEY (musica_id) REFERENCES musica_id(musicas)
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
+  FOREIGN KEY (musica_id) REFERENCES musicas(musica_id)
 ) ENGINE=InnoDB;
-
-CREATE TABLE seguindo_artistas (
-  usuario_id INT NOT NULL,
-  artista_id INT NOT NULL,
-  PRIMARY KEY (usuario_id, artista_id);
-  FOREIGN KEY (usuario_id) REFERENCES usuario_id(usuarios),
-  FOREIGN KEY (artista_id) REFERENCES artista_id(artistas)
-) ENGINE=InnoDB;
-
 
 INSERT INTO planos(nome_plano, valor)
   VALUES
@@ -78,24 +77,24 @@ INSERT INTO usuarios(nome_usuario, idade, plano_id, data_assinatura)
 
 INSERT INTO artistas (nome_artista)
   VALUES
-  ('Walter Phoenix')
-  ('Peter Strong')
-  ('Lance Day')
-  ('Freedie Shannon')
-  ('Tyler Isle')
+  ('Walter Phoenix'),
+  ('Peter Strong'),
+  ('Lance Day'),
+  ('Freedie Shannon'),
+  ('Tyler Isle'),
   ('Fog');
   
 INSERT INTO albuns (nome_album, ano_lancamento, artista_id)
   VALUES
-  ('Envious', '1990', 1)
-  ('Exuberant', '1993', 1)
-  ('Hallowed Steam', '1995', 2)
-  ('Incandescent', '1998', 3)
-  ('Temporary Culture', '2001', 4)
-  ('Library of liberty', '2003', 4)
-  ('Chained Down', '2007', 5)
-  ('Cabinet of fools', '2012', 5)
-  ('No guarantees', '2015', 5)
+  ('Envious', '1990', 1),
+  ('Exuberant', '1993', 1),
+  ('Hallowed Steam', '1995', 2),
+  ('Incandescent', '1998', 3),
+  ('Temporary Culture', '2001', 4),
+  ('Library of liberty', '2003', 4),
+  ('Chained Down', '2007', 5),
+  ('Cabinet of fools', '2012', 5),
+  ('No guarantees', '2015', 5),
   ('Apparatus', '2015', 1);
 
 INSERT INTO musicas (nome_musica, duracao_segundos, album_id)
@@ -140,6 +139,13 @@ INSERT INTO musicas (nome_musica, duracao_segundos, album_id)
   ("Wouldn't It Be Nice", 213, 10),
   ('Baby', 136, 10),
   ('You Make Me Feel So..', 83, 10);
+  
+  INSERT INTO seguindo_artistas (usuario_id, artista_id)
+    VALUES
+    (1, 1), (1, 4), (1, 3), (2, 1), (2, 3), (3, 2),
+    (3, 1), (4, 4), (5, 5), (5, 6), (6, 6), (6, 3),
+    (6, 1), (7, 2), (7, 5), (8, 1), (8, 5), (9, 6),
+    (9, 4), (9, 3), (10, 2), (10, 6);
 
 INSERT INTO historico_reproducao (usuario_id, musica_id, data_reproducao)
   VALUES
@@ -180,11 +186,4 @@ INSERT INTO historico_reproducao (usuario_id, musica_id, data_reproducao)
   (10, 20, '2017-02-06 08:21:34'),
   (10, 21, '2017-12-04 05:33:43'),
   (10, 12, '2017-07-27 05:24:49'),
-  (10, 13, '2017-12-25 01:03:57'),
-
-  INSERT INTO seguindo_artistas (usuario_id, artista_id)
-    VALUES
-    (1, 1), (1, 3), 1(, 4), (2, 1), (2, 3), (3, 2),
-    (3, 1), (4, 4), (5, 5), (5, 6), (6, 6), (6, 3),
-    (6, 1), (7, 2), (7, 5), (8, 1), (8, 5), (9, 6),
-    (9, 4), (9, 3), (10, 2), (10, 6);
+  (10, 13, '2017-12-25 01:03:57');
