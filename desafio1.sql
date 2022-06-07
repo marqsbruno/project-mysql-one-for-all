@@ -95,7 +95,7 @@ INSERT INTO albuns (nome_album, ano_lancamento, artista_id)
   ('Chained Down', '2007', 5),
   ('Cabinet of fools', '2012', 5),
   ('No guarantees', '2015', 5),
-  ('Apparatus', '2015', 1);
+  ('Apparatus', '2015', 6);
 
 INSERT INTO musicas (nome_musica, duracao_segundos, album_id)
   VALUES
